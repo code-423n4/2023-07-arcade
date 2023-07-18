@@ -33,4 +33,4 @@ scripts/airdrop/airdropMerkleProofs.json
 scripts/airdrop/repBadgeMerkleProofs.json
 
 #deployments
-.deployments/hardhat
+.deployments/

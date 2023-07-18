@@ -59,6 +59,12 @@ import { NETWORK, getLatestDeployment, getLatestDeploymentFile, getVerifiedABI }
  * Note: Against normal conventions, these tests are interdependent and meant
  * to run sequentially. Each subsequent test relies on the state of the previous.
  *
+ * Make sure the two deployment params files are up to date:
+ * - `scripts/deploy/deployment-params.ts`
+ * - `scripts/deploy/custom-quorum-params.ts`
+ * If the proper admin and manager addresses are not set correctly the setup script with fail.
+ * Default to using the deployer's address where possible.
+ *
  * To run these this script use:
  * `yarn clean && yarn compile && npx hardhat test scripts/deploy/test/e2e.ts --network <networkName>`
  */
