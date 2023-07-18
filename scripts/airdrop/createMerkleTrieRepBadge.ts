@@ -42,11 +42,11 @@ export async function main() {
 
     const proofs = await Promise.all(
         repBadgeData.map(async account => {
-            const tokenId = ethers.utils.parseEther(account.tokenId.toString());
-            const amount = ethers.utils.parseEther(account.amount.toString());
-
             const proof = merkleTrie.getHexProof(
-                ethers.utils.solidityKeccak256(["address", "uint256", "uint256"], [account.address, account.tokenId, account.amount]),
+                ethers.utils.solidityKeccak256(
+                    ["address", "uint256", "uint256"],
+                    [account.address, account.tokenId, account.amount],
+                ),
             );
             console.log(proof);
             return {

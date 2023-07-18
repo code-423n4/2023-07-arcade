@@ -151,8 +151,8 @@ describe("Deployment", function () {
         /**
          * Verify all the governance setup transactions were executed properly
          */
-        console.log("Verifying governance setup...")
-        
+        console.log("Verifying governance setup...");
+
         const arcadeTokenDistributor = <ArcadeTokenDistributor>(
             await ethers.getContractAt("ArcadeTokenDistributor", deployment["ArcadeTokenDistributor"].contractAddress)
         );
@@ -229,8 +229,12 @@ describe("Deployment", function () {
         expect(await coreVoting.quorums(deployment["ArcadeTreasury"].contractAddress, LARGE_SPEND)).to.equal(
             ethers.utils.parseEther(LARGE_SPEND_QUORUM),
         );
-        expect(await coreVoting.quorums(CALL_WHITELIST_ADDR, ADD_CALL)).to.equal(ethers.utils.parseEther(ADD_CALL_QUORUM));
-        expect(await coreVoting.quorums(CALL_WHITELIST_APPROVALS_ADDR, ADD_APPROVAL)).to.equal(ethers.utils.parseEther(ADD_APPROVAL_QUORUM));
+        expect(await coreVoting.quorums(CALL_WHITELIST_ADDR, ADD_CALL)).to.equal(
+            ethers.utils.parseEther(ADD_CALL_QUORUM),
+        );
+        expect(await coreVoting.quorums(CALL_WHITELIST_APPROVALS_ADDR, ADD_APPROVAL)).to.equal(
+            ethers.utils.parseEther(ADD_APPROVAL_QUORUM),
+        );
         expect(await coreVoting.quorums(ORIGINATION_CONTROLLER_ADDR, SET_ALLOWED_VERIFIER)).to.equal(
             ethers.utils.parseEther(SET_ALLOWED_VERIFIER_QUORUM),
         );
@@ -241,7 +245,9 @@ describe("Deployment", function () {
             ethers.utils.parseEther(SET_ALLOWED_PAYABLE_CURRENCIES_QUORUM),
         );
         expect(await coreVoting.quorums(LOAN_CORE_ADDR, PAUSE)).to.equal(ethers.utils.parseEther(PAUSE_QUORUM));
-        expect(await coreVoting.quorums(LOAN_CORE_ADDR, SET_FEE_CONTROLLER)).to.equal(ethers.utils.parseEther(SET_FEE_CONTROLLER_QUORUM));
+        expect(await coreVoting.quorums(LOAN_CORE_ADDR, SET_FEE_CONTROLLER)).to.equal(
+            ethers.utils.parseEther(SET_FEE_CONTROLLER_QUORUM),
+        );
 
         // check authorized addresses in CoreVoting
         expect(await coreVoting.authorized(ADMIN_ADDRESS)).to.equal(false);

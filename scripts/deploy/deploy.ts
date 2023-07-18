@@ -163,7 +163,7 @@ export async function main(): Promise<DeployedResources> {
     const arcadeGSCVault = await ArcadeGSCVaultFactory.deploy(
         coreVoting.address,
         ethers.utils.parseEther(GSC_THRESHOLD),
-        timelock.address
+        timelock.address,
     );
     await arcadeGSCVault.deployed();
     const arcadeGSCVaultAddress = arcadeGSCVault.address;

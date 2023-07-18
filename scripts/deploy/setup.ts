@@ -135,17 +135,41 @@ export async function main(
 
     // before transferring over ownership, set the custom quorum thresholds
     console.log("Setting custom quorum thresholds in CoreVoting...");
-    const tx11 = await coreVoting.setCustomQuorum(arcadeToken.address, MINT_TOKENS, ethers.utils.parseEther(MINT_TOKENS_QUORUM));
+    const tx11 = await coreVoting.setCustomQuorum(
+        arcadeToken.address,
+        MINT_TOKENS,
+        ethers.utils.parseEther(MINT_TOKENS_QUORUM),
+    );
     await tx11.wait();
-    const tx12 = await coreVoting.setCustomQuorum(arcadeToken.address, SET_MINTER, ethers.utils.parseEther(SET_MINTER_QUORUM));
+    const tx12 = await coreVoting.setCustomQuorum(
+        arcadeToken.address,
+        SET_MINTER,
+        ethers.utils.parseEther(SET_MINTER_QUORUM),
+    );
     await tx12.wait();
-    const tx13 = await coreVoting.setCustomQuorum(arcadeTreasury.address, MEDIUM_SPEND, ethers.utils.parseEther(MEDIUM_SPEND_QUORUM));
+    const tx13 = await coreVoting.setCustomQuorum(
+        arcadeTreasury.address,
+        MEDIUM_SPEND,
+        ethers.utils.parseEther(MEDIUM_SPEND_QUORUM),
+    );
     await tx13.wait();
-    const tx14 = await coreVoting.setCustomQuorum(arcadeTreasury.address, LARGE_SPEND, ethers.utils.parseEther(LARGE_SPEND_QUORUM));
+    const tx14 = await coreVoting.setCustomQuorum(
+        arcadeTreasury.address,
+        LARGE_SPEND,
+        ethers.utils.parseEther(LARGE_SPEND_QUORUM),
+    );
     await tx14.wait();
-    const tx15 = await coreVoting.setCustomQuorum(CALL_WHITELIST_ADDR, ADD_CALL, ethers.utils.parseEther(ADD_CALL_QUORUM));
+    const tx15 = await coreVoting.setCustomQuorum(
+        CALL_WHITELIST_ADDR,
+        ADD_CALL,
+        ethers.utils.parseEther(ADD_CALL_QUORUM),
+    );
     await tx15.wait();
-    const tx16 = await coreVoting.setCustomQuorum(CALL_WHITELIST_APPROVALS_ADDR, ADD_APPROVAL, ethers.utils.parseEther(ADD_APPROVAL_QUORUM));
+    const tx16 = await coreVoting.setCustomQuorum(
+        CALL_WHITELIST_APPROVALS_ADDR,
+        ADD_APPROVAL,
+        ethers.utils.parseEther(ADD_APPROVAL_QUORUM),
+    );
     await tx16.wait();
     const tx17 = await coreVoting.setCustomQuorum(
         ORIGINATION_CONTROLLER_ADDR,
@@ -170,7 +194,11 @@ export async function main(
     await tx20.wait();
     const tx21 = await coreVoting.setCustomQuorum(LOAN_CORE_ADDR, UNPAUSE, ethers.utils.parseEther(UNPAUSE_QUORUM));
     await tx21.wait();
-    const tx22 = await coreVoting.setCustomQuorum(LOAN_CORE_ADDR, SET_FEE_CONTROLLER, ethers.utils.parseEther(SET_FEE_CONTROLLER_QUORUM));
+    const tx22 = await coreVoting.setCustomQuorum(
+        LOAN_CORE_ADDR,
+        SET_FEE_CONTROLLER,
+        ethers.utils.parseEther(SET_FEE_CONTROLLER_QUORUM),
+    );
     await tx22.wait();
 
     // authorize gsc vault and change owner to be the coreVoting contract
