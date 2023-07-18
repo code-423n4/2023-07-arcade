@@ -34,3 +34,5 @@ scripts/airdrop/repBadgeMerkleProofs.json
 
 #deployments
 .deployments/
+gas_report.log
+.env
