@@ -74,6 +74,32 @@ Automated findings output for the audit can be found [here](add link to report) 
 
 [Arcade.xyz](https://docs.arcade.xyz/docs/faq) is a platform for autonomous borrowing, lending, and escrow of NFT collateral on EVM blockchains. This repository contains the contracts for a token-based governance system, which can be granted ownership and management authority over the core lending protocol. This governance system is built on the [Council Framework](https://docs.element.fi/governance-council/council-protocol-overview).
 
+### ___See natspec for technical detail.___
+
+The Arcade governance system's smart contracts can be grouped into the following categories:
+
+- __Voting Vaults__: Depositories for voting tokens in the governance system - see [Council's documentation](https://docs.element.fi/governance-council/council-protocol-overview/voting-vaults) for more general information. Each voting vault contract is a separate deployment, which handles its own deposits and vote-counting mechanisms for those deposits. As described below, the Arcade.xyz uses novel vote-counting mechanisms. Voting vaults also support vote delegation: a critical component of the Council governance system.
+- __Core Voting Contracts__: These contracts can be used to submit and vote on proposed governance transactions. When governing a protocol, core voting contracts may either administrate the protocol directly, or may be intermediated by a Timelock contract.
+- __Token Distribution__: The ERC20 governance token, along with contracts required for initial deployment and distribution of the token (airdrop contract, initial distributor contract).
+
+* Voting Vaults:
+    * BaseVotingVault
+    * ArcadeGSCVotingVault
+    * ARCDVestingVault
+    * ImmutableVestingVault
+
+* Core Voting Contracts
+    * CoreVoting
+    * ArcadeGSCCoreVoting
+    * Timelock
+
+*  Token Distribution
+    * ArcadeToken
+    * ArcadeTokenDistributor
+    * ArcadeAirdrop
+    * ArcadeTreasury
+
+
 # Scope
 
 *List all files in scope in the table below (along with hyperlinks) -- and feel free to add notes here to emphasize areas of focus.*

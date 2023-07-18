@@ -1,0 +1,37 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "NFTBoostVaultStorage",
+  "sourceName": "contracts/libraries/NFTBoostVaultStorage.sol",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "MULTIPLIER_TYPEHASH",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "REGISTRATION_TYPEHASH",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x60ad610039600b82828239805160001a60731461002c57634e487b7160e01b600052600060045260246000fd5b30600052607381538281f3fe7300000000000000000000000000000000000000003014608060405260043610603d5760003560e01c80631494e2f6146042578063f30dafcc14607a575b600080fd5b60687ff162ab2a93c7e839fe65139803001cff34be31efd14d829854af05b9911b6e8481565b60405190815260200160405180910390f35b60687f07c1b518f6d86c40c54c8bf33e580b563b3d5c3074a090416d401cb257be2df78156fea164736f6c6343000812000a",
+  "deployedBytecode": "0x7300000000000000000000000000000000000000003014608060405260043610603d5760003560e01c80631494e2f6146042578063f30dafcc14607a575b600080fd5b60687ff162ab2a93c7e839fe65139803001cff34be31efd14d829854af05b9911b6e8481565b60405190815260200160405180910390f35b60687f07c1b518f6d86c40c54c8bf33e580b563b3d5c3074a090416d401cb257be2df78156fea164736f6c6343000812000a",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}
