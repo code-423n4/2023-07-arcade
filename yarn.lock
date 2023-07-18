@@ -35,10 +35,6 @@ __metadata:
     "@nomiclabs/hardhat-etherscan": ^3.1.0
     "@nomiclabs/hardhat-waffle": ^2.0.3
     "@openzeppelin/contracts": 4.3.2
-    "@openzeppelin/contracts-upgradeable": ^4.7.2
-    "@openzeppelin/hardhat-upgrades": ^1.19.1
-    "@openzeppelin/upgrades-core": 1.20.4
-    "@rari-capital/solmate": ^6.4.0
     "@trivago/prettier-plugin-sort-imports": ^4.0.0
     "@typechain/ethers-v5": ^10.1.1
     "@typechain/hardhat": ^6.1.4
@@ -73,7 +69,6 @@ __metadata:
     solhint: 3.4.0
     solhint-plugin-prettier: ^0.0.5
     solidity-coverage: ^0.8.2
-    solmate: ^6.7.0
     ts-generator: ^0.1.1
     ts-node: ^10.9.1
     typechain: ^8.1.1
@@ -1764,13 +1759,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@openzeppelin/contracts-upgradeable@npm:^4.7.2":
-  version: 4.7.3
-  resolution: "@openzeppelin/contracts-upgradeable@npm:4.7.3"
-  checksum: c9ffb40cb847a975d440204fc6a811f43af960050242f707332b984d29bd16dc242ffa0935de61867aeb9e0357fadedb16b09b276deda5e9775582face831021
-  languageName: node
-  linkType: hard
-
 "@openzeppelin/contracts@npm:4.3.2":
   version: 4.3.2
   resolution: "@openzeppelin/contracts@npm:4.3.2"
@@ -1778,7 +1766,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@openzeppelin/hardhat-upgrades@npm:^1.17.0, @openzeppelin/hardhat-upgrades@npm:^1.19.1":
+"@openzeppelin/hardhat-upgrades@npm:^1.17.0":
   version: 1.22.1
   resolution: "@openzeppelin/hardhat-upgrades@npm:1.22.1"
   dependencies:
@@ -1800,21 +1788,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@openzeppelin/upgrades-core@npm:1.20.4":
-  version: 1.20.4
-  resolution: "@openzeppelin/upgrades-core@npm:1.20.4"
-  dependencies:
-    cbor: ^8.0.0
-    chalk: ^4.1.0
-    compare-versions: ^5.0.0
-    debug: ^4.1.1
-    ethereumjs-util: ^7.0.3
-    proper-lockfile: ^4.1.1
-    solidity-ast: ^0.4.15
-  checksum: a4b2cb2e07fee07046bb86f48bd338a18ac3bbc6d0aa43129e1361d3c44e3988e846a79f0127df4ffe3254371168f6cfa5ad0172e631fbdde74b2a4ba636dedf
-  languageName: node
-  linkType: hard
-
 "@openzeppelin/upgrades-core@npm:^1.20.0":
   version: 1.23.0
   resolution: "@openzeppelin/upgrades-core@npm:1.23.0"
@@ -1827,13 +1800,6 @@ __metadata:
     proper-lockfile: ^4.1.1
     solidity-ast: ^0.4.15
   checksum: 78bd12f96c1f77bdb51e6df3879cb8c882a03eea368d50ea54595850b712987f01d1bab90cc8dd9398c279e700088c94c38c0dbfcb27050bc8a79fd91bf9415d
-  languageName: node
-  linkType: hard
-
-"@rari-capital/solmate@npm:^6.4.0":
-  version: 6.4.0
-  resolution: "@rari-capital/solmate@npm:6.4.0"
-  checksum: 27c656f72ce9b51ab6ec25165ae5426f74af934352eca062eb8419c4cf7fc4c6debf45487afd6bee7860e38b7c33d3a6d353a0d4c176c961c9c8125d30cf52a4
   languageName: node
   linkType: hard
 
@@ -13785,13 +13751,6 @@ __metadata:
   bin:
     solidity-coverage: plugins/bin.js
   checksum: 489f73d56a1279f2394b7a14db315532884895baa00a4016e68a4e5be0eddca90a95cb3322e6a0b15e67f2d9003b9413ee24c1c61d78f558f5a2e1e233840825
-  languageName: node
-  linkType: hard
-
-"solmate@npm:^6.7.0":
-  version: 6.7.0
-  resolution: "solmate@npm:6.7.0"
-  checksum: f4c4ea21c74172ed1590248a05792e2362a624da3c717d87f67ed7d24cb76fc588a98eb509d6d2fe42ef7bebda87498edb8a1aeba1cd54036d13bf0e1228fbe4
   languageName: node
   linkType: hard
 
