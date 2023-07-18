@@ -23,6 +23,6 @@ export const AIRDROP_MERKLE_ROOT = ethers.constants.HashZero; // change to actua
 
 export const BADGE_DESCRIPTOR_BASE_URI = "https://arcade.xyz/"; // base uri for badge descriptors
 
-export const REPUTATION_BADGE_ADMIN = "0x6c6F915B21d43107d83c47541e5D29e872d82Da6"; // cannot be same as manager!
+export const REPUTATION_BADGE_ADMIN = "0x6c6F915B21d43107d83c47541e5D29e872d82Da6"; // CANNOT BE SAME AS REP BADGE MANAGER!
 export const REPUTATION_BADGE_MANAGER = "0x6c6F915B21d43107d83c47541e5D29e872d82Da6";
 export const REPUTATION_BADGE_RESOURCE_MANAGER = "0x6c6F915B21d43107d83c47541e5D29e872d82Da6";
