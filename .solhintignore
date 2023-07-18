@@ -1,0 +1,7 @@
+# directories
+**/artifacts
+**/node_modules
+**/test/
+
+# files
+contracts/test/cryptoPunks.sol
