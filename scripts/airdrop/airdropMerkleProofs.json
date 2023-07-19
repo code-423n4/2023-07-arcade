@@ -1,0 +1,12 @@
+[
+    {
+        "address": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+        "value": 1000000,
+        "proof": ["0x72880b3706241b16e03c2884131ba1744501d1016b1ef09783cea324510d6952"]
+    },
+    {
+        "address": "0x34aA3F359A9D614239015126635CE7732c18fDF3",
+        "value": 1000000,
+        "proof": ["0xaecd03f8def127d563b5ad4ea85696905298bbb4dabe38397d3eec6fbcf1795d"]
+    }
+]

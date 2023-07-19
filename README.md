@@ -32,7 +32,7 @@ The Arcade governance system's smart contracts can be grouped into the following
 
 - __Voting Vaults__: Depositories for voting tokens in the governance system - see [Council's documentation](https://docs.element.fi/governance-council/council-protocol-overview/voting-vaults) for more general information. Each voting vault contract is a separate deployment, which handles its own deposits and vote-counting mechanisms for those deposits. As described below, the Arcade.xyz uses novel vote-counting mechanisms. Voting vaults also support vote delegation: a critical component of the Council governance system.
 - __Core Voting Contracts__: These contracts can be used to submit and vote on proposed governance transactions. When governing a protocol, core voting contracts may either administrate the protocol directly, or may be intermediated by a Timelock contract.
-- __Token Distribution__: The ERC20 governance token, along with contracts required for initial deployment and distribution of the token (airdrop contract, initial distributor contract).
+- __Token__: The ERC20 governance token, along with contracts required for initial deployment and distribution of the token (airdrop contract, initial distributor contract).
 - __NFT__: The ERC1155 token contract along with its tokenURI descriptor contract. The ERC1155 token used in governance to give a multiplier to a user's voting power.
 
 
@@ -49,7 +49,7 @@ The Arcade governance system's smart contracts can be grouped into the following
     * ArcadeGSCCoreVoting
     * Timelock
 
-*  Token Distribution
+*  Token Contracts
     * ArcadeToken
     * ArcadeTokenDistributor
     * ArcadeAirdrop
@@ -64,14 +64,14 @@ The Arcade governance system's smart contracts can be grouped into the following
 
 | Contract | SLOC | Purpose | Libraries used |
 | ----------- | ----------- | ----------- | ----------- |
-| [ArcadeGSCCoreVoting.sol](contracts/ArcadeGSCCoreVoting.sol) | 11 | An instance of Council's `CoreVoting`, set up for use by a GSC. | N/A |
-| [ArcadeTreasury.sol](contracts/ArcadeTreasury.sol) | 170 | A contract which can receive tokens from the distributor, and transfer or approve them based on invocations from governance.<br><br>The GSC may be authorized to spend smaller amounts from their own voting contract: all other amounts must be authorized by full community votes. | [`@openzeppelin/*`](https://openzeppelin.com/contracts/) |
+| [ArcadeGSCCoreVoting.sol](contracts/ArcadeGSCCoreVoting.sol) | 11 | An instance of Council's `CoreVoting`, to be used by a GSC vault. | N/A |
+| [ArcadeTreasury.sol](contracts/ArcadeTreasury.sol) | 170 | A contract which can receive tokens from the distributor, and transfers or approves them based on invocations from governance.<br><br>The GSC may be authorized to spend smaller amounts from their own voting contract: all other amounts must be authorized by full community votes. | [`@openzeppelin/*`](https://openzeppelin.com/contracts/) |
 | [BaseVotingVault.sol](contracts/BaseVotingVault.sol) | 61 | A basic `VotingVault` implementation, with little extension from Council. Defines common query and management interfaces for all voting vaults. Unlike Council, Arcade governance voting vaults are not upgradeable. | [`@openzeppelin/*`](https://openzeppelin.com/contracts/) |
-| [ARCDVestingVault.sol](contracts/ARCDVestingVault.sol) | 161 | A voting vault, designed for early Arcade community members, contributors, and launch partners, that holds tokens in escrow subject to a vesting timeline. Both locked and unlocked tokens held by the vault contribute governance voting power. Since locked tokens are held by the `ARCDVestingVault`, they are not eligible for NFT boosts. | [`@openzeppelin/*`](https://openzeppelin.com/contracts/) |
-| [ImmutableVestingVault.sol](contracts/ImmutableVestingVault.sol) | 14 | An instance of the `ARCDVestingVault`, with functionality extended such that `revokeGrant` cannot be used. Tokens held in this vault otherwise have the same voting power and liquidity constraints as ones held by `ARCDVestingVault`. | N/A |
+| [ARCDVestingVault.sol](contracts/ARCDVestingVault.sol) | 161 | A voting vault, designed for early Arcade team members, contributors, and dev partners, that holds tokens in escrow subject to a vesting timeline. Both locked and unlocked tokens held by the vault contribute governance voting power. Since locked tokens are held by the `ARCDVestingVault`, they are not eligible for NFT boosts. | [`@openzeppelin/*`](https://openzeppelin.com/contracts/) |
+| [ImmutableVestingVault.sol](contracts/ImmutableVestingVault.sol) | 14 | An instance of the `ARCDVestingVault`, with functionality extended such that `revokeGrant` cannot be used. Tokens held in this vault otherwise have the same voting power and liquidity constraints as ones held by `ARCDVestingVault`. This voting vault is going to be used to hold investor and early launch partner token allocations. | N/A |
 | [NFTBoostVault.sol](contracts/NFTBoostVault.sol) | 287 | The core community voting vault for governance: it enables token-weighted vote counting with delegation and an NFT "boost". Token holders can deposit or withdraw into the vault to register voting power, with no liquidity restrictions. Each token deposited represents a unit of voting power. In addition, the NFT boost allows certain ERC1155 assets to receive "multipliers": when users deposit those NFTs, the voting power of their deposited ERC20 tokens are boosted by multiplier. In addition to adding tokens and an NFT at deposit time, both components of the deposit can be managed separately: NFTs can be added, updated, or withdrawn separately, and a user can add or remove tokens from an NFT boosted position.<br><br>At any time, governance may update the multiplier value associated with a given NFT. Due to gas constraints, this will not immediately update the voting power of users who are using this NFT for a boost. However, any user's voting power can be updated by any other user via the `updateVotingPower` function - this value will look up the current multiplier of the user's registered NFT and recalculate the boosted voting power. This can be used in cases where obselete boosts may be influencing the outcome of a vote. | [`@openzeppelin/*`](https://openzeppelin.com/contracts/) |
 | [ArcadeGSCVault.sol](contracts/ArcadeGSCVault.sol) | 9 | An instance of Council's `GSCVault`, a voting vault contract for a [Governance Steering Council](https://docs.element.fi/governance-council/council-protocol-overview/governance-steering-council). See Council documentation for more information. | N/A |
-| [ArcadeAirdrop.sol](contracts/token/ArcadeAirdrop.sol) | 29 | A contract which can receive tokens from the distributor, and release them for a second distribution according to a merkle tree. Governance may set a merkle root, and users can claim tokens by proving ownership in the tree.<br><br>Unclaimed tokens after a set `expiration` time may be reclaimed by governance. | [`@openzeppelin/*`](https://openzeppelin.com/contracts/) |
+| [ArcadeAirdrop.sol](contracts/token/ArcadeAirdrop.sol) | 29 | A contract which can receive tokens and release them according to a merkle root stored in the contract. Governance may set a merkle root, and users can claim tokens by proving ownership in the associated merkle tree.<br><br>Unclaimed tokens after a set `expiration` time may be reclaimed by governance. | [`@openzeppelin/*`](https://openzeppelin.com/contracts/) |
 | [ArcadeToken.sol](contracts/token/ArcadeToken.sol) | 49 | A standard OpenZeppelin based `ERC20` token, with minting capability. At deploy time, an initial amount of circulating tokens are minted to a distributor contract (see `ArcadeTokenDistributor`).<br><br>Governance is given ownership of the token on deployment, and every 365 days, governance may decide to call the `mint` function to mint new tokens. The ability to call `mint` is granted by governance to a single address. When calling `mint`, governance may mint up to 2% of the total supply. After calling, `mint`, it may not be called again for 365 days. | [`@openzeppelin/*`](https://openzeppelin.com/contracts/) |
 | [ArcadeTokenDistributor.sol](contracts/token/ArcadeTokenDistributor.sol) | 69 | A contract which receives the initial circulating supply of token, and will send tokens to destinations representing distribution according to tokenomics. This may include airdrop contracts or vesting vaults. | [`@openzeppelin/*`](https://openzeppelin.com/contracts/) |
 | [ReputationBadge.sol](contracts/nft/ReputationBadge.sol) | 100 |  Reputation badges are ERC1155 tokens that can be minted by users who meets certain criteria. For example, a user who has completed a certain number of tasks can be awarded a badge. The badge can be used in governance to give a multiplier to a user's voting power. Voting power multipliers associated with each tokenId are stored in the governance vault contracts not the badge contract.<br><br>This contract uses a merkle trie to determine which users are eligible to mint a badge. Only the manager of the contract can update the merkle roots and claim expirations. Additionally, there is an optional mint price which can be set and claimed by the manager. | [`@openzeppelin/*`](https://openzeppelin.com/contracts/) |
@@ -80,7 +80,7 @@ The Arcade governance system's smart contracts can be grouped into the following
 
 ## Out of scope
 
-* `contracts/external/` contain dependency contracts and should not be in scope - think of it as `lib/`. There are contracts - principally `CoreVoting.sol`, `Timelock.sol` and `GSCVault.sol` - that we integrate with, and having copies of their on-chain code in the repo was useful.
+* `contracts/external/` contain dependency contracts and should not be in scope - think of it as `lib/`. There are contracts - principally `CoreVoting.sol`, `Timelock.sol` and `GSCVault.sol` - that we integrate with. Having copies of their on-chain code in the repo was useful. However, if one of the contracts that is in-scope is not calling these external contracts properly or produce edge cases where these external contracts to produce bugs or unexpected behavior, these submissions will be reviewed for possible bounty.
 
 * `contracts/test/` contains mock contracts for testing purposes and should not need to be looked at, except obviously within the context of reviewing the tests.
 
@@ -196,9 +196,11 @@ Delete the smart contract artifacts, the coverage reports and the Hardhat cache:
 $ yarn clean
 ```
 
-# Script
+# Scripts
 
 Deploy the contracts, set up roles and permissions, perform contract verification:
+
+* Note before deploying verify the `deployment-params.ts` file has be updated with the appropriate addresses.
 
 ```sh
 $ yarn clean && yarn compile && npx hardhat test scripts/deploy/test/e2e.ts --network <network>
