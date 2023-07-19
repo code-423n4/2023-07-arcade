@@ -70,8 +70,6 @@ Full audit report can be found [here](LINK TO BE ADDED).
 
 *Note for C4 wardens: Anything included in the automated findings output is considered a publicly known issue and is ineligible for awards.*
 
-[ ⭐️ SPONSORS ADD INFO HERE ]
-
 # Overview
 
 [Arcade.xyz](https://docs.arcade.xyz/docs/faq) is a platform for autonomous borrowing, lending, and escrow of NFT collateral on EVM blockchains. This repository contains the contracts for a token-based governance system, which can be granted ownership and management authority over the core lending protocol. This governance system is built on the [Council Framework](https://docs.element.fi/governance-council/council-protocol-overview).
@@ -110,14 +108,12 @@ The Arcade governance system's smart contracts can be grouped into the following
 
 # Scope
 
-*For line of code counts, we recommend using [cloc](https://github.com/AlDanial/cloc).*
-
 | Contract | SLOC | Purpose | Libraries used |
 | ----------- | ----------- | ----------- | ----------- |
 | [ARCDVestingVault.sol](contracts/ARCDVestingVault.sol) | 384 | A voting vault, designed for early Arcade community members, contributors, and launch partners, that holds tokens in escrow subject to a vesting timeline. Both locked and unlocked tokens held by the vault contribute governance voting power. Since locked tokens are held by the `ARCDVestingVault`, they are not eligible for NFT boosts. | [`@openzeppelin/*`](https://openzeppelin.com/contracts/) |
-
+| ----------- | ----------- | ----------- | ----------- |
 | [ArcadeGSCCoreVoting.sol](contracts/ArcadeGSCCoreVoting.sol) | 33 | An instance of Council's `CoreVoting`, set up for use by a GSC. | N/A |
-
+| ----------- | ----------- | ----------- | ----------- |
 | [ArcadeGSCVault.sol](contracts/ArcadeGSCVault.sol) | 40 | An instance of Council's `GSCVault`, a voting vault contract for a
 [Governance Steering Council](https://docs.element.fi/governance-council/council-protocol-overview/governance-steering-council).
 See Council documentation for more information. | N/A |
