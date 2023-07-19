@@ -2,10 +2,9 @@ import { ethers } from "hardhat";
 
 export const ADMIN_ADDRESS = "0x6c6F915B21d43107d83c47541e5D29e872d82Da6"; // deployer wallet
 
-export const DISTRIBUTION_MULTISIG = "0x0a606524006a48C4D93662aA935AEC203CaC98C1";
+export const DISTRIBUTION_MULTISIG = "0x6c6F915B21d43107d83c47541e5D29e872d82Da6";
 export const TEAM_VESTING_VAULT_MANAGER = "0x6c6F915B21d43107d83c47541e5D29e872d82Da6";
 export const NFT_BOOST_VAULT_MANAGER = "0x6c6F915B21d43107d83c47541e5D29e872d82Da6";
-
 export const TIMELOCK_WAIT_TIME = 19488; // ~3 days in blocks (3 days allows for a grace period that is longer than a weekend)
 export const GSC_MIN_LOCK_DURATION = 2165; // ~8 hours in blocks
 
@@ -23,6 +22,6 @@ export const AIRDROP_MERKLE_ROOT = ethers.constants.HashZero; // change to actua
 
 export const BADGE_DESCRIPTOR_BASE_URI = "https://arcade.xyz/"; // base uri for badge descriptors
 
-export const REPUTATION_BADGE_ADMIN = "0x6c6F915B21d43107d83c47541e5D29e872d82Da6"; // CANNOT BE SAME AS REP BADGE MANAGER!
+export const REPUTATION_BADGE_ADMIN = "0x434890980a2392C12dF4Ed728Cacd3a3261678EF"; // CANNOT BE SAME AS REP BADGE MANAGER!
 export const REPUTATION_BADGE_MANAGER = "0x6c6F915B21d43107d83c47541e5D29e872d82Da6";
 export const REPUTATION_BADGE_RESOURCE_MANAGER = "0x6c6F915B21d43107d83c47541e5D29e872d82Da6";

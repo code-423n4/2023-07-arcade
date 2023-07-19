@@ -1,7 +1,7 @@
 import assert from "assert";
 import { expect } from "chai";
 import { execSync } from "child_process";
-import { ethers } from "hardhat";
+import { artifacts, ethers } from "hardhat";
 
 import {
     ARCDVestingVault,
