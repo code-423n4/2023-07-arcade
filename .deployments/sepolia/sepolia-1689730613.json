@@ -1,0 +1,114 @@
+{
+  "ArcadeTokenDistributor": {
+    "contractAddress": "0x8FbDfde02E40486dB83d7B0263DFF71824Fa1582",
+    "constructorArgs": []
+  },
+  "ArcadeToken": {
+    "contractAddress": "0x730a13fF8806176efE20df7689a7Afd4277f87c1",
+    "constructorArgs": [
+      "0x6c6F915B21d43107d83c47541e5D29e872d82Da6",
+      "0x8FbDfde02E40486dB83d7B0263DFF71824Fa1582"
+    ]
+  },
+  "CoreVoting": {
+    "contractAddress": "0x9072CddD6a8a18105D3d7b4B537d895Db828e25a",
+    "constructorArgs": [
+      "0x6c6F915B21d43107d83c47541e5D29e872d82Da6",
+      {
+        "type": "BigNumber",
+        "hex": "0x013da329b6336471800000"
+      },
+      {
+        "type": "BigNumber",
+        "hex": "0x043c33c1937564800000"
+      },
+      "0x0000000000000000000000000000000000000000",
+      []
+    ]
+  },
+  "ArcadeGSCCoreVoting": {
+    "contractAddress": "0x7835A75Ea5a2c517e7a2b5A0F248ab1bEe81bE70",
+    "constructorArgs": [
+      "0x6c6F915B21d43107d83c47541e5D29e872d82Da6",
+      3,
+      1,
+      "0x0000000000000000000000000000000000000000",
+      []
+    ]
+  },
+  "Timelock": {
+    "contractAddress": "0x1721Fe57Fba562afcF17856914bacF2697aE3eA8",
+    "constructorArgs": [
+      19488,
+      "0x6c6F915B21d43107d83c47541e5D29e872d82Da6",
+      "0x6c6F915B21d43107d83c47541e5D29e872d82Da6"
+    ]
+  },
+  "ARCDVestingVault": {
+    "contractAddress": "0x368F72b6a4fc3Bb62bA5A921F4aE2e97677a5849",
+    "constructorArgs": [
+      "0x730a13fF8806176efE20df7689a7Afd4277f87c1",
+      200000,
+      "0x6c6F915B21d43107d83c47541e5D29e872d82Da6",
+      "0x1721Fe57Fba562afcF17856914bacF2697aE3eA8"
+    ]
+  },
+  "ImmutableVestingVault": {
+    "contractAddress": "0x15B8ac5b2bAd532077b1Bb0C961d10E6d2e169dd",
+    "constructorArgs": [
+      "0x730a13fF8806176efE20df7689a7Afd4277f87c1",
+      200000,
+      "0x6c6F915B21d43107d83c47541e5D29e872d82Da6",
+      "0x1721Fe57Fba562afcF17856914bacF2697aE3eA8"
+    ]
+  },
+  "NFTBoostVault": {
+    "contractAddress": "0x2Ec9AcC4e191109693c28CE5e6891dade6033672",
+    "constructorArgs": [
+      "0x730a13fF8806176efE20df7689a7Afd4277f87c1",
+      200000,
+      "0x1721Fe57Fba562afcF17856914bacF2697aE3eA8",
+      "0x6c6F915B21d43107d83c47541e5D29e872d82Da6"
+    ]
+  },
+  "ArcadeGSCVault": {
+    "contractAddress": "0xec951A0B6B74eb4B834d04Da7494544C756aeBbd",
+    "constructorArgs": [
+      "0x9072CddD6a8a18105D3d7b4B537d895Db828e25a",
+      {
+        "type": "BigNumber",
+        "hex": "0x1fc3842bd1f071c00000"
+      },
+      "0x1721Fe57Fba562afcF17856914bacF2697aE3eA8"
+    ]
+  },
+  "ArcadeTreasury": {
+    "contractAddress": "0xbc29E9cD00D64F28e63373395AE0e4BD7F595E5B",
+    "constructorArgs": [
+      "0x6c6F915B21d43107d83c47541e5D29e872d82Da6"
+    ]
+  },
+  "ArcadeAirdrop": {
+    "contractAddress": "0x4837D1C02b5C86597354Ae1286d504839692a9D3",
+    "constructorArgs": [
+      "0x6c6F915B21d43107d83c47541e5D29e872d82Da6",
+      "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "0x730a13fF8806176efE20df7689a7Afd4277f87c1",
+      1697572386,
+      "0x2Ec9AcC4e191109693c28CE5e6891dade6033672"
+    ]
+  },
+  "BadgeDescriptor": {
+    "contractAddress": "0xA710E3C3A6FCa67ce1DB7537B97b016512cAB5Cb",
+    "constructorArgs": [
+      "https://arcade.xyz/"
+    ]
+  },
+  "ReputationBadge": {
+    "contractAddress": "0x52b537c737C2239CFceb98C27F544B08c546773E",
+    "constructorArgs": [
+      "0x434890980a2392C12dF4Ed728Cacd3a3261678EF",
+      "0xA710E3C3A6FCa67ce1DB7537B97b016512cAB5Cb"
+    ]
+  }
+}

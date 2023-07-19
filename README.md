@@ -295,4 +295,12 @@ Delete the smart contract artifacts, the coverage reports and the Hardhat cache:
 $ yarn clean
 ```
 
+#### Script
+
+Deploy the contracts, set up roles and permissions, perform contract verification:
+
+```sh
+$ yarn clean && yarn compile && npx hardhat test scripts/deploy/test/e2e.ts --network <network>
+```
+
 *Note: Many wardens run Slither as a first pass for testing.  Please document any known errors with no workaround.*
