@@ -1,0 +1,16 @@
+[profile.default]
+src = "src"
+out = "artifacts"
+libs = ["node_modules", "lib"]
+remappings = [
+    "@arcadexyz/=node_modules/@arcadexyz/",
+    "@balancer-labs/=node_modules/@balancer-labs/",
+    "@ensdomains/=node_modules/@ensdomains/",
+    "@openzeppelin/=node_modules/@openzeppelin/",
+    "@rari-capital/=node_modules/@rari-capital/",
+    "eth-gas-reporter/=node_modules/eth-gas-reporter/",
+    "hardhat/=node_modules/hardhat/",
+    "solmate/=node_modules/solmate/",
+]
+
+# See more config options https://github.com/foundry-rs/foundry/tree/master/config
