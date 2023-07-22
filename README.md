@@ -16,7 +16,7 @@
 
 ## Automated Findings / Publicly Known Issues
 
-Automated findings output for the audit can be found [here](https://github.com/code-423n4/2023-07-arcade/blob/main/slither/FullReport.md).
+Automated findings output for the audit can be found [here](https://github.com/code-423n4/2023-07-arcade/blob/main/slither/FullReport.md) and [here](https://gist.github.com/itsmetechjay/e494eb18a34459c4d7841fc6fdc700e1).
 
 The previous audit report can be found [here](https://github.com/code-423n4/2023-07-arcade/blob/main/audits/).
 
