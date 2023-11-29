@@ -1,0 +1,1272 @@
+==============================================================
+Guild: Code4rena
+Channel: ARCHIVE-Q3-2023 / arcade-jul21
+==============================================================
+
+[07/20/2023 11:47] kartoonjoy (pinned)
+👋 Hello and welcome to the audit channel for the $90,500 USDC **Arcade.xyz** audit!
+
+📆 Audit opens 07/21/2023 20:00 (20:00 UTC) and runs through 07/28/2023 20:00 (20:00 UTC) (7 days).
+
+Please give a warm welcome to the Arcard.xyz team, particularly @PowVT and @em_mutable, who will be available for questions either here in the channel or via DM in the US timezone(s).
+
+We'll be posting relevant links, documentation, etc. here, so if you intend to participate in this audit, consider enabling notifications for this channel. 🐺 ⏰
+
+Audit Page: https://code4rena.com/contests/2023-07-arcadexyz#top
+
+{Embed}
+https://code4rena.com/contests/2023-07-arcadexyz
+Code4rena
+Code4rena is a competitive audit platform that finds more high-severity vulnerabilities, more quickly than any other auditing method.
+Code4rena - ARCHIVE-Q3-2023 - arcade-jul21 [1131308705053425764].txt_Files/c4-og-banner-14641.png
+
+{Reactions}
+🎉 (3) 
+
+[07/20/2023 11:47] kartoonjoy
+Pinned a message.
+
+
+[07/21/2023 20:08] em_mutable
+Welcome to Arcade's audit wardens! @PowVT and I are the authors of the code and are happy to answer questions and clarify things as needed.  Happy bug hunting 👋
+
+{Reactions}
+🔥 (9) 👋 (9) 
+
+[07/21/2023 20:24] deliriusz
+In case you have problems with yarn cache, try following commands:
+
+```
+yarn cache clean --all
+YARN_CHECKSUM_BEHAVIOR=update yarn
+```
+
+{Reactions}
+thankyou (2) 
+
+[07/21/2023 21:34] deth2814
+@em_mutable sent DM
+
+{Reactions}
+👍 
+
+[07/21/2023 22:33] 0xrobocop
+Hi, @PowVT are the issues of the past audit already fixed?
+
+
+[07/21/2023 22:37] powvt
+Hey, we fixed about 90% of the findings and the remaining we opted out of fixing for various reasons. In the Omnicia report you can see which issues were addressed
+
+{Reactions}
+✅ 
+
+[07/22/2023 09:12] lokacho
+@PowVT | @em_mutable
+are the CoreVoting, GSCVault & ARCDVestingVault in scope of the audit?
+
+
+[07/22/2023 09:16] 0xjuntao
+@PowVT @em_mutable what's the purpose of delegate function in ARCDVestingVault? seems delegateeVotes (voting power) is not used anywhere
+
+
+[07/22/2023 09:31] trtrth
+you should have a look at the README
+
+{Reactions}
+thankyou 
+
+[07/22/2023 10:10] powvt
+When a user with voting power calls delegate, the address they delegate too will receive all their voting power. So the delegate even without depositing tokens can vote in governance.
+
+{Reactions}
+😯 
+
+[07/22/2023 11:28] 0xjuntao
+where in the code the voting power is used? can you kindly point out
+
+
+[07/22/2023 13:25] powvt
+Voting power is used by the Core Voting contract in the external folder. It is used when a user calls `vote`  and when a user creates a proposal. Also in the external folder the GSCVault uses this to see if a user meets the voting power threshold to become a member of the GSC.
+
+{Reactions}
+👍 (3) 
+
+[07/22/2023 13:43] 0xjuntao
+ah I see, thanks🫡
+
+
+[07/22/2023 14:39] zigtur
+Hi @PowVT, typescript files are out-of-scope but I think there is a bug in it
+
+
+[07/22/2023 17:35] itsmetechjay (pinned)
+Wardens - please note that the automated findings output (AKA the winning bot race report 🏆, submitted by @favelanky) is posted below.
+
+These are considered publicly known issues and are not eligible for awards.
+
+**🤖 Automated findings: **
+https://gist.github.com/itsmetechjay/e494eb18a34459c4d7841fc6fdc700e1
+
+**📄 Code4rena submission guidelines and automated findings policy: **
+https://docs.code4rena.com/roles/wardens/submission-policy#automated-findings-ineligible
+
+The above link will also be added to the contest README shortly.
+
+
+[07/22/2023 17:35] itsmetechjay
+Pinned a message.
+
+
+[07/22/2023 18:36] aba1842
+@favelanky congrats! I got to say, I love the fact that you collapse the instances, makes the report so much easier to read!
+
+{Reactions}
+thankyou (2) 
+
+[07/22/2023 20:10] trachev
+@PowVT @em_mutable On which chains will the contracts be deployed?
+
+
+[07/22/2023 20:27] em_mutable
+They will be deployed on Mainnet.
+
+{Reactions}
+❤️ (2) 
+
+[07/22/2023 20:31] azaryan01
+https://discord.com/channels/810916927919620096/958800160870240286/1128722821837750272 why here says that it's 2000 sLOC and 13 contracts, while the scope is 979 sLOC in 12 contracts?
+
+
+[07/22/2023 21:13] em_mutable
+Apologies for the discrepancy, it is 12 contracts at 979 sLOC.
+
+{Reactions}
+👍 
+
+[07/22/2023 21:14] aba1842
+hey, am I having trouble with installing project dependencies and running tests. On a clean repo/clone `yarn` fails (on Windows). Tried a bunch of stuff, maybe you guys have already solved this?
+
+{Attachments}
+Code4rena - ARCHIVE-Q3-2023 - arcade-jul21 [1131308705053425764].txt_Files/image-A693C.png
+
+
+[07/22/2023 22:21] aba1842
+so, I deleted the checksum directly from the yarn.lock to bypass the check and the package was installed. But When running test it complained about having both `waffle` and `hardhat-chai-matchers`. But hardhat does not work without `hardhat-chai-matchers` (was getting a specific error message) so I removed `waffle` but `waffle` is used in the testing code so I ended up trying to modify the test code to not use `waffle`, where I stopped. 
+
+So I ask, did anybody actually managed to run the tests?
+
+
+[07/22/2023 22:52] trachev
+@em_mutable @PowVT Are contracts that import  "./external/council/libraries/Storage.sol"; intended to be implementation contracts of upgradeable protocols?
+
+
+[07/23/2023 03:30] 0x11singh99
+how do I run only one test file  at a time ?
+
+
+[07/23/2023 03:33] _3agle
+Check the forge test -h docs
+
+
+[07/23/2023 03:42] immeas
+or if it is hardhat you can use `--grep`
+```
+$ npx hardhat test --grep "Vote Execution with Arcade GSC Vault"
+```
+as an example
+
+
+[07/23/2023 03:43] immeas
+also works with single tests:
+```
+$ npx hardhat test --grep "Executes proposal to pause V2 Promissory Notes transfers with an Arcade GSC vote: YES"
+```
+
+
+[07/23/2023 05:22] schrodingershen
+https://discord.com/channels/810916927919620096/1131308705053425764/1132045448606134323  this worked for me, give it a try
+
+{Reactions}
+👍 
+
+[07/23/2023 05:36] em_mutable
+No. We are not using any upgrade ability in our contracts.
+
+{Reactions}
+👍 (2) ❤️ 
+
+[07/23/2023 06:51] squeaky_cactus
+On both Windows and WSL setups,  `yarn install` was failing on checksum, after removing the checksum for the `"@arcadexyz/v2-contracts@arcadexyz/v2-contracts"` in `yarn.lock` the install was fine.
+
+On running the tests (`npm test`) there was a warning about having both matchers, however the test all executed and passed.
+
+Were you getting tests failing, or refusing to execute?
+
+{Reactions}
+👍 (2) thankyou 
+
+[07/23/2023 07:09] .satyam_
+@PowVT dmed u plz reply!!
+
+
+[07/23/2023 07:38] 0xnirlin
+Can't install dependencies for some reason, giving waffle something error. Anyone else faced it?
+
+
+[07/23/2023 09:23] 0xlgtm
+@PowVT Hi ser, DMed you as well!
+
+
+[07/23/2023 09:33] trachev
+Then what is the purpose of using the Storage library in ARCDVestingVault? In Storage.sol it says: "// This library allows for secure storage pointers across proxy implementations".
+
+
+[07/23/2023 09:41] em_mutable
+This is an external Council library contract. In their use case, it supports upgrade ability. We are using it for our storage although our contracts are not upgradeable.
+
+
+[07/23/2023 09:41] trachev
+Ok, thanks.
+
+
+[07/23/2023 10:15] _3agle
+@PowVT Pls check DM
+
+
+[07/23/2023 10:48] _3agle
+@PowVT @em_mutable what does GSC stand for?
+
+
+[07/23/2023 10:52] inallhonesty_
+Governance Steering Council
+
+{Reactions}
+👍 
+
+[07/23/2023 10:57] 0x11singh99
+Thanks , it worked.
+
+{Reactions}
+hi5 
+
+[07/23/2023 11:31] 0xpathfindr
+Hey @PowVT & @em_mutable Kindly accept friend request.
+
+
+[07/23/2023 12:33] L9 Baldur#8731
+
+
+{Attachments}
+Code4rena - ARCHIVE-Q3-2023 - arcade-jul21 [1131308705053425764].txt_Files/image-C97A7.png
+
+
+[07/23/2023 12:34] L9 Baldur#8731
+Hey, yarn install fails anyone knows how to deal with that ?
+
+
+[07/23/2023 12:38] viktor_cortess
+On both Windows and WSL setups,  yarn install was failing on checksum, after removing the checksum for the "@arcadexyz/v2-contracts@arcadexyz/v2-contracts" in yarn.lock the install was fine.
+
+
+[07/23/2023 12:39] L9 Baldur#8731
+
+
+{Attachments}
+Code4rena - ARCHIVE-Q3-2023 - arcade-jul21 [1131308705053425764].txt_Files/image-EBC51.png
+
+
+[07/23/2023 12:39] L9 Baldur#8731
+yea you mean this checksum line ?
+
+
+[07/23/2023 12:40] L9 Baldur#8731
+
+
+{Attachments}
+Code4rena - ARCHIVE-Q3-2023 - arcade-jul21 [1131308705053425764].txt_Files/image-368E8.png
+
+
+[07/23/2023 12:40] L9 Baldur#8731
+I removed it and it still fails
+
+
+[07/23/2023 12:40] L9 Baldur#8731
+Am I doing something wrong ?
+
+
+[07/23/2023 13:16] prapandey031
+You could go ahead with further commands...they worked for me even after yarn install failed.
+
+
+[07/23/2023 13:22] L9 Baldur#8731
+Yarn test works for you even if u dont have node_modules ?
+
+
+[07/23/2023 13:28] coffiasd
+Run the above command before `yarn install`
+
+
+[07/23/2023 13:28] coffiasd
+it works for me .
+
+
+[07/23/2023 13:28] coffiasd
+`yarn cache clean --all
+YARN_CHECKSUM_BEHAVIOR=update yarn`
+
+
+[07/23/2023 13:30] coffiasd
+you can't go further until you successfully install  dependency package
+
+
+[07/23/2023 13:31] L9 Baldur#8731
+ok ill try it, you still delete the checksum line right ?
+
+
+[07/23/2023 13:32] aba1842
+something very odd for me regarding this, on a fresh git repo/clone the advice to simply remove the yarn.lock checksum works, but on the one I worked on/notted stuff it fails. Well, I will just use the other one (or copy the nodes_modules directly onto this one)... very very odd
+
+{Attachments}
+Code4rena - ARCHIVE-Q3-2023 - arcade-jul21 [1131308705053425764].txt_Files/image-35201.png
+
+
+[07/23/2023 13:38] L9 Baldur#8731
+I ran this commands on the fresh repo and everything seems working. Thanks dude !
+
+
+[07/23/2023 13:38] coffiasd
+you're welcome
+
+
+[07/23/2023 16:01] aba1842
+What was the reasoning behind making the `unlock` feature of the NFT Boost Vault non-reversable ?
+>  Allows the timelock to unlock withdrawals. Cannot be reversed.
+
+
+[07/23/2023 19:11] powvt
+This was more of a business decision to encourage governance participation and community development in the early stages.
+
+{Reactions}
+🤍 (2) 
+
+[07/23/2023 19:19] aba1842
+I see, thank you. Another question, if you can please. What is the intended use case of `ArcadeTreasury::batchCalls`.  The `if (spendThresholds[targets[i]].small != 0) revert T_InvalidTarget(targets[i]);` check imposes quite a strict limitation
+
+
+[07/23/2023 19:21] viktor_cortess
+Hello guys, registration.withdrawn means amount that was withdrawn before or the amount that is left to withdraw? i.e. if registration.amount = 100, I withdraw 30, then registration.withdrawn = 30?
+
+
+[07/23/2023 19:38] aba1842
+yes, it does. Thank you again, very much!
+
+
+[07/23/2023 19:39] powvt
+This is correct, the withdraw amount helps with accounting. It helps us calculate a user's current vopting power. See here: https://github.com/code-423n4/2023-07-arcade/blob/f8ac4e7c4fdea559b73d9dd5606f618d4e6c73cd/contracts/NFTBoostVault.sol#L630
+
+
+[07/24/2023 01:25] powvt
+Sorry I misspoke in my original reply here. That check is so that people do not circumvent the spend thresholds put in place. If the token has a spend limit then it cannot also be used to make external calls. This function is more intended to be used for things like uniswap swaps, compound etc... things where governance wants to participate in other protocols with the tokens held in the treasury.
+
+{Reactions}
+thankyou 🫡 (2) 
+
+[07/24/2023 02:50] coffiasd
+@PowVT please check DM .
+
+
+[07/24/2023 05:06] caventa
+Should we trust all the roles?
+
+
+[07/24/2023 08:58] aba1842
+yeah, I kind  of thought of that and was actually thinking to submit it as an issue, since the Error event description said the opposite. Good that this is clearer now for everybody!
+
+
+[07/24/2023 09:19] 0xnirlin
+Can anyone explain the concept of cliff in arcade vesting contract
+
+
+[07/24/2023 09:25] _3agle
+In the context of vesting contracts, a "cliff" refers to a specific period of time that must pass before any vested tokens or assets become accessible. During the cliff period, no tokens or assets are unlocked or available for the recipient.
+
+Typically, vesting contracts have a cliff period to ensure that the recipient remains committed to the project or organization for a certain duration before gaining access to their vested tokens. It acts as a form of lock-up period or probationary period.
+
+Once the cliff period is over, the vesting schedule begins, and a portion of the tokens or assets becomes accessible at regular intervals until the grant or vesting period ends.
+
+The cliff period is defined by specifying a block number or a specific duration of time in the vesting contract. It is important to note that during the cliff period, no tokens are unlocked, and the recipient does not have access to them.
+
+The purpose of the cliff period is to align the interests of the recipient with the project or organization and incentivize long-term commitment.
+
+{Reactions}
+thankyou (3) 
+
+[07/24/2023 09:49] noro9954
+can the delegatee use the voting power of the tokens even if the "cliff" is still ongoing ?
+
+
+[07/24/2023 09:50] 0xflaming0
+Just ran the tests right now and they take quite a while to run, is this expected?
+
+
+[07/24/2023 10:20] 0xjuntao
+I believe so
+
+{Reactions}
+👍 
+
+[07/24/2023 11:52] benrai
+The contracts `GSCVault` and `Core Voting` are not in scope, right @PowVT? Even though `ArcadeGSCVault.sol` and `ArcadeGSCCoreVoting.sol` are inhariting from them?
+
+
+[07/24/2023 12:58] powvt
+Yes user has voting power even if their cliff has not been reached.
+
+
+[07/24/2023 12:58] powvt
+Yeah it takes a couple of mins to run
+
+
+[07/24/2023 13:00] powvt
+Not in scope, but if you find a exploit that would be detrimental to governance operations or the expected operation of these contracts the submission will definitely be considered.
+
+
+[07/24/2023 13:01] 0xprinc
+Whats an nft boost ?
+
+
+[07/24/2023 13:04] 0xprinc
+Oh got it.
+
+
+[07/24/2023 13:16] powvt
+A unique voting vault, when a NFT is deposited and added to a users registration it can increase their voting power. Giving their voting power a 'boost'.
+
+{Reactions}
+👍🏻 
+
+[07/24/2023 13:18] kosedogus
+@PowVT Can you please check DM?
+
+{Reactions}
+👍 
+
+[07/24/2023 13:29] tamayonft
+The findings in the last audit are already done right?
+
+
+[07/24/2023 13:50] powvt
+We addressed findings in the Omnicia audit located in the audit folder. But if you think the audit fixes are insufficient or incomplete feel free to let us know in DM.
+
+
+[07/24/2023 14:55] olanre_waju
+Can't submit findings on  Arcade....why? Submitting on other contest but this.
+
+
+[07/24/2023 14:57] powvt
+Are you referring to the C4 webiste, you cannot submit a finding?
+
+
+[07/24/2023 14:59] olanre_waju
+Yes sir.
+
+
+[07/24/2023 14:59] olanre_waju
+Only for Arcade tho, cos I just submitted on another contest and it was successful.
+
+
+[07/24/2023 15:00] powvt
+@kartoonjoy  do you mind taking a look?
+
+
+[07/24/2023 15:00] .satyam_
+i think ur not certified maybe that's why!!
+
+
+[07/24/2023 15:01] olanre_waju
+Already had a submission, on the same contest
+
+
+[07/24/2023 15:05] noro9954
+@PowVT DMed you !
+
+{Reactions}
+👍 
+
+[07/24/2023 15:15] itsmetechjay
+Are you seeing an error?
+
+
+[07/24/2023 15:22] olanre_waju
+The create issue button is not just responding
+
+
+[07/24/2023 15:39] olanre_waju
+Fixed, thanks.
+
+{Reactions}
+👍 
+
+[07/24/2023 15:40] 0xnevi
+dmed @PowVT
+
+{Reactions}
+👍 
+
+[07/24/2023 16:20] sunosuporno
+Hey @PowVT, DMed you
+
+{Reactions}
+👍 
+
+[07/25/2023 03:40] squeaky_cactus
+Hey @PowVT , I've also DMed you
+
+
+[07/25/2023 07:11] _3agle
+Which ERC20 will the `NFTBoostVault` support. Or will there be multiple deployments for different ERC20s
+
+
+[07/25/2023 07:40] 0xnevi
+Dont take my word for it but since vaults are for voting and amount of tokens = votingpower (excluding multiplier) i think only arcadegovernance tokens are supported
+
+{Reactions}
+👍 💯 
+
+[07/25/2023 08:40] _3agle
+I don't see any `arcadegovernance` token, Are you referring to `ArcadeToken`?
+
+{Reactions}
+👍🏻 
+
+[07/25/2023 08:41] 0xnevi
+Yes thats the governance token i think
+
+{Reactions}
+👍 
+
+[07/25/2023 10:08] anirruth
+so if i submit a bug affecting the protocol from an out of scope file it is considered valid?
+
+
+[07/25/2023 12:23] powvt
+Feel free to DM details about the bug, thanks!
+
+
+[07/25/2023 12:33] anirruth
+dmed you
+
+{Reactions}
+👍 
+
+[07/25/2023 14:41] mrpotatomagic
+@PowVT dmed you
+
+
+[07/25/2023 14:46] demelew
+i am still facing this error after  i removed the checksum
+
+
+[07/25/2023 15:11] powvt
+I am using yarn version 3.2.1. Maybe try a fresh clone of the repo? Also make sure you are using yarn for the install
+
+
+[07/25/2023 15:28] demelew
+still the same
+
+
+[07/25/2023 15:29] demelew
+with the same yarn version
+
+
+[07/25/2023 15:55] powvt
+possibly try `yarn cache clean`
+
+
+[07/25/2023 17:54] zaevlad
+@PowVT dm you, thanks
+
+{Reactions}
+👍 
+
+[07/25/2023 20:39] ustazz
+for me, following is working: original idea @ayden
+yarn cache clean --all
+add --> checksumBehavior: 'update' <-- in file .yarnc.yml
+yarn install
+
+
+[07/25/2023 20:51] osmanozdemir1
+Hi @PowVT 
+Wanted to ask a question and sent friend request 👋🏼
+
+{Reactions}
+👍 
+
+[07/25/2023 21:22] 0xdeo
+@PowVT DMd
+
+{Reactions}
+👍 
+
+[07/25/2023 21:42] 0xJimbo#2687
+Please would someone be kind enough to explain, in vestingvault delegate function, in the first push call (line 268) - why is there a difference between oldDelegateeVotes and grant.latestVotingPower?
+
+
+[07/25/2023 21:45] osmanozdemir1
+As my understanding, delegatee might have voting power from a lot of users.
+
+If a user wants to delegate someone new, that user’s old delegatee will lose that amount of voting power and the new delegatee will get that
+
+{Reactions}
+💯 
+
+[07/25/2023 21:57] 0xJimbo#2687
+I guess what I’m trying to understand is what votingPower.loadTop(grant.delegatee); represents & what grant.latestVotingPower represents. In my head I’m expecting them to be the same figure, but obviously they aren’t
+
+
+[07/25/2023 22:00] osmanozdemir1
+I believe Grant A, grant B, grant C etc they all can have the same delegatee. 
+
+votingPower.loadTop(grant.delegatee) will result all the sum of the voting powers which has the same delegatee but grant.latestVotingPower is only one grant’s power
+
+{Reactions}
+👍 
+
+[07/25/2023 22:01] 0xJimbo#2687
+Ahh. Understood 👍 thanks sir
+
+
+[07/25/2023 22:02] osmanozdemir1
+You’re very wellcome 👋🏼👋🏼
+
+
+[07/25/2023 22:23] powvt
+accepted
+
+{Reactions}
+👍🏼 
+
+[07/26/2023 00:37] rana_umar
+I want to be a warden an audit this contract too ..what should I do for it? I mean I have registered on code4rena as a warden but how do I register for auditing this specific project..help me  I am new here
+
+
+[07/26/2023 06:07] benrai
+You can just go to the contes website (https://code4rena.com/contests/2023-07-arcadexyz#top). Log in with your wallet and you can see the repo by clicking "View Repo". Clone it to your computer and start looking for bugs. Once you have found a bug you can submit it on the contest site by clicking "Make a submission".
+
+{Embed}
+https://code4rena.com/contests/2023-07-arcadexyz
+Code4rena
+Code4rena is a competitive audit platform that finds more high-severity vulnerabilities, more quickly than any other auditing method.
+Code4rena - ARCHIVE-Q3-2023 - arcade-jul21 [1131308705053425764].txt_Files/c4-og-banner-004D6.png
+
+
+[07/26/2023 11:54] 0xdeo
+Why are users not able to register more than once? What if they want to deposit different erc1155 token ids
+
+
+[07/26/2023 12:01] powvt
+They should only be able to deposit on NFT into the NFTBoostVault at a time. There is a function updateNft where they can swap out their current NFT with a new one
+
+
+[07/26/2023 14:39] ladboy233
+Dmed
+
+{Reactions}
+👍 
+
+[07/26/2023 21:41] 0xJimbo#2687
+In what scenario do you envisage updateVotingPower in NFTBoostVault to be used?
+
+
+[07/26/2023 22:13] powvt
+A contract manager can update the NFT multiplier being used. So this function can basically sync it with the new voting power. Otherwise it would be very gas intensive to update all users with that badge's voting power if this op was performed when the multiplier is updated.
+
+
+[07/26/2023 23:19] 0xJimbo#2687
+Understood. Thank you!
+
+{Reactions}
+👍 
+
+[07/27/2023 05:50] coffiasd
+In what scenarios do users  use their votingPower ? @PowVT
+
+
+[07/27/2023 05:54] _3agle
+The voting power from all approved vaults such as `NFTBoostVault` or `ARCDVestingVault` is used in the governance (i.e. `/external/CoreVoting.sol`, `ArcadeGSCCoreVoting`)
+
+{Reactions}
+❤️ (2) 👍 
+
+[07/27/2023 10:01] t1moh
+Hello, I have a question about scope details. For example `ArcadeAirdrop.sol` is in scope, but inherits from `ArcadeMerkleRewards.sol` which is not in scope. Whether we should audit `ArcadeMerkleRewards.sol`?
+
+
+[07/27/2023 10:21] t1moh
+@PowVT and @em_mutable
+
+
+[07/27/2023 10:23] bytes032
+not c4/arcade staff, but here's a similar finding that could potentially could shed some light
+
+
+[07/27/2023 10:23] bytes032
+https://github.com/code-423n4/2023-05-ajna-findings/issues/141
+
+{Reactions}
+👍 
+
+[07/27/2023 10:24] bytes032
+unless "ArcadeMerkleRewards" kind of "forces" ArcadeAirdrop.sol to implement vulnerable code, its gonna be OOS
+
+{Reactions}
+👍 🫡 
+
+[07/27/2023 10:42] josephdara
+Hi @em_mutable , I sent a DM
+
+{Reactions}
+👍 
+
+[07/27/2023 12:05] 0x3b
+Hello, I haven't noticed a module to cast votes, is it out of scope?
+
+
+[07/27/2023 12:14] _3agle
+Yes, it's OOS. Votes can be cast in `external/CoreVoting::vote`
+
+{Reactions}
+❤️ (2) 👍 
+
+[07/27/2023 13:07] powvt
+Good to see you here ser. Happy hunting
+
+
+[07/27/2023 18:41] dimulski
+@PowVT  Dmed
+
+{Reactions}
+👍 
+
+[07/27/2023 23:14] _kow
+@PowVT Dmed
+
+{Reactions}
+👍 
+
+[07/28/2023 06:44] limbooo9
+@PowVT dmed
+
+{Reactions}
+👍 
+
+[07/28/2023 11:14] mrpotatomagic
+@PowVT dmed you
+
+{Reactions}
+👍 
+
+[07/28/2023 17:00] phoenixv110
+@PowVT dmed you
+
+
+[07/28/2023 17:42] Audinarey#1058
+I cant submit my all my findings 
+I am getting a rate limit exceeded error message.
+
+{Attachments}
+Code4rena - ARCHIVE-Q3-2023 - arcade-jul21 [1131308705053425764].txt_Files/Screenshot_2023-07-28_at_18.41.37-BCA27.png
+
+
+[07/28/2023 17:42] Audinarey#1058
+n
+
+
+[07/28/2023 17:42] Audinarey#1058
+What did I do wrong mods?
+
+
+[07/28/2023 17:44] itsmetechjay
+We are aware of the issue and the devs are working on it
+
+
+[07/28/2023 17:45] Audinarey#1058
+Time is almost up for submissions are you planning to extend the time a bit?
+
+
+[07/28/2023 17:46] sunosuporno
+I am also facing this same issue.
+
+
+[07/28/2023 18:04] itsmetechjay
+We are actively working on a fix and some folks have been able to submit.  Can you try again @Audinarey @sunosuporno
+
+
+[07/28/2023 18:05] sunosuporno
+It is working again as of now
+
+{Reactions}
+👍 thankyou 
+
+[07/28/2023 18:09] immeas
+inb4 everyone submitting at the same time again triggering API ratelimit 😛
+
+
+[07/28/2023 18:11] itsmetechjay
+We are working on a fix. It'll be great.
+
+{Reactions}
+hi5 
+
+[07/28/2023 18:13] immeas
+i was just joking, great job, thanks for the quick response!
+
+{Reactions}
+💜 
+
+[07/28/2023 18:15] Audinarey#1058
+Its working, thanks
+
+{Reactions}
+👍 thankyou 
+
+[07/28/2023 18:19] mrpotatomagic
+@PowVT dmed you
+
+{Reactions}
+👍 
+
+[07/28/2023 18:20] itsmetechjay
+Submissions issue should be resolved.
+
+
+[07/28/2023 19:59] mrpotatomagic
+Hi, i cannot submit
+
+
+[07/28/2023 19:59] mrpotatomagic
+the create issue button wont respond
+
+
+[07/28/2023 20:01] mrpotatomagic
+@Jay | C4
+
+
+[07/28/2023 20:02] C4
+**🚨 AUDIT ALERT**
+
+@🐺wardens The **Arcade.xyz** audit is now closed! Huge thanks to everyone who participated 🔍, whether you submitted a finding or not.
+
+What's next: The sponsor team and judge will review the findings over the next couple of weeks. Keep an eye on #📢announcements for regular updates on how the audit is progressing through awarding 🤑🏆, judging 🧑‍⚖️ and reporting 📜. Feel free to ping a Contest-Admin if you have questions along the way!
+
+{Reactions}
+🫡 (9) code4rena (7) 
+
+[07/28/2023 20:03] mrpotatomagic
+is it possible to submit, I tried submitting the issue but create issue button did not respoond
+
+
+[07/28/2023 20:03] mrpotatomagic
+This was 2 minutes before the contest deadline
+
+
+[07/28/2023 20:04] kartoonjoy
+You can't wait until 2 mins prior to close. You'll get caught 95% of the time. We have to honor the cutoff period.
+
+
+[07/28/2023 20:06] mrpotatomagic
+i tried submitting my analysis  and a medium issue as well but it didn't work, is it fine if I submit it through the helpdesk form? I have them ready with me.
+
+
+[07/28/2023 20:07] kartoonjoy
+unfortunately no
+
+{Reactions}
+👍 
+
+[07/28/2023 20:07] ladboy233
+:hi5:
+
+
+[07/28/2023 20:10] 0xnirlin
+How are you any where and every where.
+
+{Reactions}
+😂 (6) 
+
+[07/28/2023 20:21] ladboy233
+🥷
+
+
+[07/28/2023 21:08] stormreckson
+Now we wait
+
+
+[07/28/2023 21:08] mrpotatomagic
+Thank you @PowVT @em_mutable  for your coordination
+
+{Reactions}
+🙏 
+
+[07/28/2023 21:31] em_mutable
+Thank you to all contest participants and best of luck with your submissions!
+
+We are looking forward to learning about all what you may have uncovered  💪  💪  💪
+
+{Reactions}
+code4rena (11) 
+
+[07/29/2023 06:24] alliums0517
+sheeeeeh
+
+
+[07/29/2023 06:24] alliums0517
+Forgot to submit findings dammit
+
+{Reactions}
+😶 (6) 🫠 (8) 
+
+[07/29/2023 16:16] josephdara
+same🥲 
+
+Took a 'short' siesta after an all-nighter only to wake up 3 minutes after submission closed😅
+
+
+[07/30/2023 01:50] alliums0517
+The contest usually ends at 10pm my time. But I just saw the contest nowadays ends 16 hours earlier. Missed 2 H & 2 M
+
+
+[07/30/2023 02:58] _3agle
+🤯 2 Highs??? Now I’m interested. 
+Is it allowed to discuss the vulns after the contest is closed?
+
+
+[07/30/2023 04:29] alliums0517
+We can definitely discuss if it’s allowed. I’d like to know other contestants findings as well
+
+
+[07/30/2023 05:42] 0x3b
+on private maybe, but for sure they don't allow it publicly until results are announced
+
+
+[07/30/2023 07:49] aba1842
+correction, publicly you are not allowed to discuss issues until the report is out, not the results
+
+{Reactions}
+👍 (3) 
+
+[08/01/2023 19:22] 0xJimbo#2687
+How long usually are we waiting until results/report is released
+
+
+[08/01/2023 19:24] shubh0412
+Min a month for result. Additional 1-2 month for report.
+
+
+[08/08/2023 17:07] rana_umar
+Hello
+
+
+[08/08/2023 17:08] rana_umar
+tell me the best way to understand the contract for auditing
+
+
+[08/08/2023 17:09] rana_umar
+how to understand a large code base .....what is the best way to do it
+
+
+[08/08/2023 20:16] stormreckson
+I'm also new ..but I think looking for where bad things can happen is generally a good approach
+
+
+[08/09/2023 11:29] benrai
+You know that this contest is over, right? Just want to make sure that you spend your time in an active contest 😊
+
+
+[08/18/2023 14:51] thebrittfactor
+🤑 🎉  Awards for **Arcade.xyz**:
+
+$13,929.82 USDC » @DadeKuma 
+$13,610.61 USDC » @bart1e 
+$8,181.31 USDC » @0xladboy | Sparkware
+$4,094.99 USDC » @0x3b
+$2,663.87 USDC » @T1MOH  
+$2,663.87 USDC » @osmanozdemir1 
+$2,337.55 USDC » @bin2chen 
+$2,110.85 USDC » @!0xcaventa-Malaysia 
+$1,798.11 USDC » @0xWaitress 
+$1,109.95 USDC » @Topmark 
+$766.83 USDC » @anirruth 
+$726.93 USDC » @K42 Ψ 
+$725.77 USDC » @comradeKtg 
+$653.55 USDC » @0xnev 
+$613.47 USDC » @Juntao🐾 
+$611.47 USDC » @MohammedRizwan 
+$589.87 USDC » @rvierdiiev 
+$589.87 USDC » @giovannidisiena  
+$589.87 USDC » @Matin 
+$513.89 USDC » @Udsen 
+$479.13 USDC » @Sathish9098  
+$471.90 USDC » @Olanrewaju 
+$471.90 USDC » @circlelooper 
+$471.90 USDC » @auditsea 
+$471.90 USDC » @zaevlad 
+$471.90 USDC » @crunch 
+$471.90 USDC » @Jiamin 
+$471.90 USDC » @VanGrim 
+$471.90 USDC » UniversalCrypto (@amaechi eth and @tettehnetworks) 
+$381.97 USDC » @oakcobalt 
+$319.21 USDC » @foxb868 
+$319.21 USDC » @Priyam 
+$319.21 USDC » @peanuts 
+$319.21 USDC » @kutu 
+$313.63 USDC » @kaveyjoe 
+$313.63 USDC » @dharma09 
+$313.63 USDC » @excalibor 
+$313.63 USDC » @c3phas 
+$312.74 USDC » @0xastronatey
+$312.74 USDC » @BenRai 
+$312.74 USDC » @sces60107 | GimelSec 
+$312.74 USDC » @0xbranded
+$312.74 USDC » @0xmuxyz 
+$312.74 USDC » @Viktor_Cortess 
+$253.08 USDC » LaScaloneta (@nicobevi.eth, @juancito and @anon)
+$242.31 USDC » BugBusters (@nirlin and @0xepley) 
+$194.68 USDC » @QiuhaoLi 
+$194.68 USDC » @zhaojie 
+$194.68 USDC » @0xComfyCat 
+$69.23 USDC » @squeaky_cactus 
+$42.55 USDC » @jeffy 
+$42.55 USDC » @Raihan 
+$42.55 USDC » @code-cipher 
+$42.55 USDC » @SM3_SS
+$21.60 USDC » @ABA 
+$21.60 USDC » @koxuan 
+$21.60 USDC » @matrix_0wl 
+$21.60 USDC » @immeas 
+$21.60 USDC » @0xDING99YA 
+$21.60 USDC » @ak1 
+
+🏁 Findings summary
+-------------------------------------
+High risk findings: 0
+Med risk findings: 8 unique (40 total)
+Gas reports: 10 (Best K42)
+QA reports: 20 (Best LaScaloneta)
+Advanced Analysis reports: 14 (Best Sathish9098)
+
+Awards will be distributed on Polygon within the next week. Congratulations all!  💸 💸 💸
+
+*Note: If you participated in this audit and don’t see your name on this list, please wait until the report is published and the findings repo is made public to check on your submissions.*
+
+{Reactions}
+🎉 (17) ✅ (4) 🙏 (4) 👽 🫡 🇷 (2) ❤️ (2) 🤑 (2) 
+
+[08/18/2023 15:00] uncle Jeff#4407
+my first bounty lesss goooo ❤️
+
+{Reactions}
+🎉 (6) 
+
+[08/18/2023 15:07] auditsea
+Congrats everyone!
+
+{Reactions}
+🫡 ❤️ 
+
+[08/18/2023 15:10] _3agle
+Yay!!! 🎉
+
+{Reactions}
+🔥 
+
+[08/18/2023 15:10] anirruth
+My first bounty too😊😊
+
+
+[08/18/2023 15:14] rnemes
+V good result for your first
+
+
+[08/18/2023 15:18] uncle Jeff#4407
+u killed it mate
+
+
+[08/18/2023 15:21] anirruth
+Thank you!🤝
+
+
+[08/18/2023 15:23] anirruth
+U too brother🫡
+
+
+[08/18/2023 15:23] zhaojie
+My first bounty:chefskiss:
+
+{Reactions}
+hi5 (9) 🔥 (4) 
+
+[08/18/2023 15:24] kaveyjoe
+Congrats Everyone🤑
+
+
+[08/18/2023 15:39] t1moh
+Congrats @DadeKuma
+
+{Reactions}
+thankyou (3) 
+
+[08/18/2023 15:39] t1moh
+Finally my first top 5
+
+{Reactions}
+🎉 (7) 
+
+[08/18/2023 15:46] ladboy233
+2 week judging, 2 days posting judging QA, 3 week result
+
+
+[08/18/2023 15:46] ladboy233
+:thankyou:
+
+
+[08/18/2023 15:47] ladboy233
+discord frontrunning twitter
+
+{Reactions}
+🎉 (13) 
+
+[08/18/2023 16:17] excalibor
+damn not bad for only a gas report :>
+
+
+[08/18/2023 20:48] bean.eth2
+out of my expectation, huge thanks for the team and the sponsor
+
+
+[08/19/2023 10:55] anirruth
+Will the awards be sent in usdc?
+
+
+[08/19/2023 11:13] kaveyjoe
+USDC on  Polygon Network
+
+
+[08/19/2023 12:20] anirruth
+So weve to just import the default usd coin(PoS) right?
+
+
+[08/19/2023 12:25] kaveyjoe
+Yes
+
+{Reactions}
+👍 
+
+[08/22/2023 13:07] uncle Jeff#4407
+anyone got their bounty yet? it's my first time and i not sure if I fucked smtg up with metamask or it didnt arrive yet for everyone
+
+
+[08/22/2023 13:17] kaveyjoe
+Already received
+
+
+[08/22/2023 13:19] kaveyjoe
+check your wallet on Polygon network , rewards distributed on USDC in Polygon
+
+
+[08/22/2023 15:53] uncle Jeff#4407
+I guess i probably fucked smtg then 😔
+
+
+[08/22/2023 15:54] uncle Jeff#4407
+I out my metamask address in polygon address field in the website
+
+
+[08/22/2023 15:54] uncle Jeff#4407
+before adding polygon to my metamask extension, should that effect anything ? cause I didnt receive anything yet
+
+
+[08/22/2023 16:00] mrpotatomagic
+have you imported the USDC contract address on polygon network?
+
+
+[08/22/2023 16:01] mrpotatomagic
+if not, your USDC will not reflect in metamask
+
+
+[08/22/2023 16:08] uncle Jeff#4407
+I don't know how to, can u provide a link or so?
+
+
+[08/22/2023 16:09] mrpotatomagic
+0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174
+
+
+[08/22/2023 16:10] mrpotatomagic
+Switch to your polygon network and there must be an import tokens option at the bottom
+
+
+[08/22/2023 16:10] mrpotatomagic
+paste this address there and it should reflect your balance
+
+
+[08/22/2023 16:12] uncle Jeff#4407
+it worked thank you so much!
+
+{Reactions}
+💜 
+
+[08/27/2023 13:09] mrosas
+Hi admins, must you be certified to get the rewards?
+
+
+[08/27/2023 13:10] mrosas
+I noticed that my findings was not rewarded too
+
+
+[08/27/2023 13:26] 0x3b
+no you don't need to
+
+
+[08/27/2023 13:26] mrosas
+Hmm interesting, means my findings are invalid?
+
+
+[08/27/2023 13:27] 0x3b
+You can look at it after the report is done
+
+
+[08/27/2023 13:27] mrosas
+Will there be reasons stated for the rejections?
+
+
+[08/27/2023 15:46] 0x3b
+Usually there is
+
+
+[09/08/2023 10:36] oizo.
+It's been a while this contest has ended, when can we expect to see the report? (or is it available somewhere I don't know)
+
+
+[09/13/2023 11:17] _paperparachute
+End of September/Early October hopefully
+
+{Reactions}
+👍 
+
+[10/14/2023 19:13] rana_umar
+hello
+
+
+[10/20/2023 15:53] noro9954
+wen the report ?
+
+
+[10/20/2023 16:00] _paperparachute
+Holding off on publishing at sponsor request. At the moment can't give you any further information.
+
+
+==============================================================
+Exported 239 message(s)
+==============================================================
